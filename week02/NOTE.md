@@ -78,3 +78,51 @@ BNF（巴斯克诺尔范式）可以用来描述形式化语言
   - Module
   - Package
   - Library
+
+### 计算机中的文件存储
+
+  - 二进制文件
+  - 文本文件
+    - 通过字符集和字符编码将二进制转换成字符
+  - 字符集
+    - ASCII
+    - Unicode
+    - GBK
+    ...
+
+思考为什么不建议使用中文作为变量名？
+
+超过ASCII字符集的变量名比如中文会和文件本身的字符集强相关，在不同环境下编码的问题难以处理，而ASCII字符集之内的编码是所有其他编码都兼容的不会产生这个问题。如果一定要使用中文变量名的话可以使用 \u 进行转义处理。
+  
+InputElement
+  - WhiteSpace
+    - TAB (CHARACTER TABULATION) U+0009
+    - VT (LINE TABULATION) U+000B
+    - FF (FORM FEED) U+000C
+    - SP (SPCAE) U+0020
+    - NBSP (NO-BREAK SPACE) U+00A0
+    - ZWNBSP (ZERO WIDTH NO-BREAK SPACE) U+FEFF
+    - USP Any other Unicode “Space_Separator” code point
+  - LineTerminator
+    - LF (LINE FEDD) U+000A
+    - CR (CARRIAGE RETURN) U+000D
+    - LS (LINE SEPARATOR) U+2028
+    - PS (PARAGRAPH SEPARATOR) U+2029
+  - Comment
+    - MultiLineComment 多行注释中如果出现至少一个LineTerminator 则会合并成一个 LineTerminator 所以会影响无法插入 LineTerminator 语法的执行
+    - SingleLineComment
+  - Token
+    - IdentiferName
+      - Name
+      - Keywords
+    - Punctuators
+      - Punctuator
+      - DivPunctuator
+      - RightBracePunctuator
+    - NullLiteral
+    - BooleanLiteral
+    - NumericLiteral
+    - StringLiteral
+    - Regular Expression Literals
+    - Template
+    - Automatic Semicolon Insertion
