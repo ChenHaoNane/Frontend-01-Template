@@ -140,8 +140,63 @@ Object -> 基本类型
 - new class extends
 - new function prototype
 
+
+### JavaScript 中的对象
+
+- 宿主对象
+- 内置对象
+  - 固有对象
+  - 原生对象
+    - 基本类型
+      - Boolean
+      - String
+      - Number
+      - Symbol
+      - Object
+    - 基础功能和数据结构
+      - Array
+      - Date
+      - Promise
+      - Function
+      - RegExp
+      - Proxy
+      - Map
+      - WeakMap
+      - Set
+      - WeakSet
+    - 错误类型
+      - Error
+      - EvalError
+      - ReferenceError
+      - SyntaxError
+      - TypeError
+      - URIError
+    - 二进制操作
+      - ArrayBuffer
+      - SharedArrayBuffer
+      - DataView
+    - 带类型的数组
+      - Float32Array
+      - Float64Array
+      - Int8Array
+      - Int16Array
+      - Int32Array
+      - Uint8Array
+      - Uint16Array
+      - Uint32Array
+      - Uint8ClampedArray
+  - 普通对象
+
+
 ### JavaScript 中的特殊对象
 
-- Function
-- Array
--
+- Function \[[call]] \[[construct]]
+- Array \[[length]]
+- RegExp \[[RegExpMatcher]]
+- Symbol \[[SymbolData]]
+- Map \[[MapData]]
+- Error \[[ErrorData]]
+- Boolean \[[BooleanData]]
+- Number \[[NumberData]]
+- Date [[DateVale]]
+
