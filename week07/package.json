@@ -1,0 +1,17 @@
+{
+  "name": "TOY-BROWSER",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ab.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "chenhaonan <chenhaonan_2008@163.com>",
+  "license": "MIT",
+  "dependencies": {
+    "css": "^2.2.4",
+    "images": "^3.0.2"
+  }
+}
