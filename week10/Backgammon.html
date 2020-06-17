@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .row {
+      height: 30px;
+    }
+    .cell {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      vertical-align: middle;
+      line-height: 30px;
+      text-align: center;
+      background-color: green;
+      border: 1px solid white;
+    }
+  </style>
+</head>
+<body>
+  <div id="board"></div>
+  <button id="btn">重新开始</button>
+  <script>
+    let pattern = []
+    let color = 1
+    // 15 * 15 的格子
+    let number = 15
+    // 5子棋
+    let temp = 5
+    let isEnd = false
+
+    let btn = document.getElementById('btn')
+    btn.addEventListener('click', start)
+    function show() {
+      let borad = document.getElementById('board')
+      borad.innerHTML = ''
+      for (let i = 0; i < number; i++) {
+        let row = document.createElement('div')
+        row.classList.add('row')
+        for (let j = 0; j < number; j++) {
+          let cell = document.createElement('div')
+          cell.classList.add('cell')
+          cell.innerText =
+            pattern[i][j] === 1 ?  '⭕️' :
+            pattern[i][j] === 2 ?  '❌' :
+            '';
+          cell.addEventListener('click', () => {
+            move(j, i) 
+          })
+          row.appendChild(cell)
+        }
+        board.appendChild(row)
+      }
+    }
+
+    function check(pattern, color, x, y) {
+      {
+        let count = 0
+        let start = Math.max(0, x - (temp - 1))
+        let end = Math.min(number, x + (temp - 1))
+        for (let i = start; i < end; i++) {
+          if (pattern[i][x] !== color) {
+            count = 0
+          } else {
+            count += 1
+            if (count === temp) return true
+          }
+        }
+      }
+
+      {
+        let count = 0
+        let start = Math.max(0, y - (temp - 1))
+        let end = Math.min(number, y + (temp - 1))
+        console.log('start', y, start)
+        console.log('end', y, end)
+        for (let i = start; i < end; i++) {
+          if (pattern[y][i] !== color) {
+            count = 0
+          } else {
+            count += 1
+            if (count === temp) return true
+          }
+        }
+      }
+      
+      // 斜着向上
+      {
+        let count = 0
+        for (let i = -temp + 1; i < temp; i++) {
+          if (x + i < 0 || y - i < 0 || x + i > number - 1 || y - i > number - 1) {
+            continue
+          }
+          if (pattern[y - i][x + i] !== color) {
+            count = 0
+          } else {
+            count += 1
+            if (count === temp) return true
+          }
+        }
+      }
+
+      // 斜着向下
+      {
+        let count = 0
+        for (let i = -temp + 1; i < temp; i++) {
+          if (x + i < 0 || y + i < 0 || x + i > number - 1 || y + i > number - 1) {
+            continue
+          }
+          if (pattern[y + i][x + i] !== color) {
+            count = 0
+          } else {
+            count += 1
+            if (count === temp) return true
+          }
+        }
+      }
+      return false
+    }
+
+    function willWin(pattern, color) {
+      for (let i = 0; i < number; i++) {
+        for (let j = 0; j < number; j++) {
+          if (pattern[i][j] !== 0) {
+            continue
+          }
+          let tmp = clone(pattern)
+          tmp[i][j] = color
+          if (check(tmp, color, j, i)) {
+            return [j, i]
+          }
+        }
+      }
+      return null
+    }
+
+    function clone(obj) {
+      return JSON.parse(JSON.stringify(obj))
+    }
+
+    function start() {
+      for (let i = 0; i < number; i++) {
+        pattern[i] = []
+        for (let j = 0; j < number; j++) {
+          pattern[i][j] = 0
+        }
+      }
+      color = 1
+      number = 15
+      temp = 5
+      isEnd = false
+      show()
+    }
+
+    function move(x, y) {
+      if (isEnd) return
+      if (!pattern[y][x]) {
+        pattern[y][x] = color
+        show()
+      }
+      if (check(pattern, color, x, y)) {
+        alert(color === 1 ? '⭕️ win' : '❌win')
+        isEnd = true
+      } else {
+        color = 3 - color
+        if (willWin(pattern, color)) {
+          console.log(color === 1 ? '⭕️ will win' : '❌ will win')
+        }
+      }
+    }
+    start()
+  </script>
+</body>
+</html>
