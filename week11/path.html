@@ -155,11 +155,13 @@
     
     async function findPath(map, start, end) {
       let endIndex = end[1] * 100 + end[0]
+      let startIndex = start[1] * 100 + start[0]
       if (map[endIndex]) 
         return false
-      else 
+      else {
+        container.children[startIndex].style.backgroundColor = 'green'
         container.children[endIndex].style.backgroundColor = 'red'
-
+      }
       function distance([x, y]) {
         return (x - end[0]) ** 2 + (y - end[1]) ** 2
       }
@@ -218,10 +220,13 @@
 
     async function findPath2(map, start, end) {
       let endIndex = end[1] * 100 + end[0]
+      let startIndex = start[1] * 100 + start[0]
       if (map[endIndex]) 
         return false
-      else 
+      else {
+        container.children[startIndex].style.backgroundColor = 'green'
         container.children[endIndex].style.backgroundColor = 'red'
+      }
       function distance([x, y]) {
         return (x - end[0]) ** 2 + (y - end[1]) ** 2
       }
