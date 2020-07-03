@@ -8,7 +8,7 @@
   - 0型文法（无限制文法或短语结构文法）
   - 1型文法（上下文相关文法）
   - 2型文法（上下文无关文法）
-  - 3型文法（正则文法
+  - 3型文法（正则文法)
 
 ### 非形式化语言在计算机中的定义
 
@@ -29,6 +29,15 @@ BNF（巴斯克诺尔范式）可以用来描述形式化语言
 <AddtiveExpression> ::= 
   <DecimalNumber> |
   <AddtiveExpression> "+" <DecimalNumber>
+
+<NUmber> :: = "0" | "1" | ... | "9"
+<DecimalNumber> :: = "0" | ("1" | ... | "9") <Number>*
+<MultipleExpression> ::=
+  <DecimalNumber> |
+  <MultipleExpression> "*" <DecimalNumber>
+<AddtiveExpression> ::=
+  <MultipleExpression> |
+  <AddtiveExpression> "+" <MultipleExpression>
 
 ### 通过产生式理解巴斯克诺尔范式
 
