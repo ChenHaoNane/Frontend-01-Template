@@ -7,6 +7,7 @@
 ### Left Hand Sides
 
 运行时为 Reference 类型
+可以理解为放在等号左边的表达式
 
 - MemberExpression
   - a.b
@@ -26,7 +27,7 @@
   - foo()`b`
 
 ### Right Hand Sides
-
+可以放在表达式右边的 返回结果是具体的值
 - Expression
   - Update
     - a ++
