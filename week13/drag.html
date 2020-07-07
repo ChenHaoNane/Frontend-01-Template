@@ -1,0 +1,54 @@
+<div id="container">
+  文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+</div><div id="dragable" style="display: inline-block; width: 100px;height: 100px;background-color: pink;"></div>
+<script>
+  let dragable = document.getElementById('dragable')
+  let baseX = 0
+  let baseY = 0
+  dragable.addEventListener('mousedown', (event) => {
+    let startX = event.clientX
+    let startY = event.clientY
+    let layerX = event.layerX
+    let layerY = event.layerY
+    let move = (event) => {
+      const { clientX, clientY } = event
+      let x = baseX + clientX - startX
+      let y = baseY + clientY - startY
+      let node = nearest(x, y)
+      node.insertNode(dragable)
+    }
+    let up = (event) => {
+      baseX += event.clientX - startX
+      baseY += event.clientY - startY
+      document.removeEventListener('mousemove', move)
+      document.removeEventListener('mouseup', up)
+    }
+
+    document.addEventListener('mousemove', move)
+    document.addEventListener('mouseup', up)
+  })
+
+  let ranges = []
+  let container = document.getElementById('container').childNodes[0]
+  for(let i = 0; i < container.textContent.length; i ++) {
+    let range = new Range()
+    range.setStart(container, i)
+    range.setEnd(container, i)
+    console.log(range.getBoundingClientRect())
+    ranges.push(range)
+  }
+
+  function nearest(x0, y0) {
+    let value = Infinity
+    let node = null
+    for (let i = 0; i < ranges.length; i++) {
+      let { x, y } = ranges[i].getBoundingClientRect()
+      if ((x0 - x) ** 2 + (y0 - y) ** 2 < value) {
+        value = (x0 - x) ** 2 + (y0 - y) ** 2
+        node = ranges[i]
+      }
+    }
+    return node
+  }
+  
+</script>
