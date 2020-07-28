@@ -1,24 +1,30 @@
 export class Timeline {
   constructor() {
-    this.animations = [];
+    this.animations = new Set();
+    this.finishedAnimations = new Set();
+    this.addTimes = new Map();
     this.state = 'inited';
     this.tick = () => {
       let t = Date.now() - this.startTime;
-      let animations = this.animations.filter(animation => !animation.finished)
-      for (let animation of animations) {
-        let { object, porperty, start, end, template, delay, duration, timingFunction, addTime } = animation;
+      for (let animation of this.animations) {
+        let { object, porperty, start, end, template, delay, duration, timingFunction } = animation;
+        let addTime = this.addTimes.get(animation);
         let progression = timingFunction((t - delay - addTime) / duration);
         if (t < delay + addTime) {
           continue
         }
         if (t > duration + delay + addTime) {
-          progression = 1
-          animation.finished = true
+          progression = 1;
+          this.animations.delete(animation);
+          this.finishedAnimations.add(animation);
         }
         let value = animation.valueFromProgression(start, end, progression);
         object[porperty] = template(value);
       }
-      this.requestID = requestAnimationFrame(this.tick)
+      if (this.animations.size)
+        this.requestID = requestAnimationFrame(this.tick)
+      else
+        this.requestID = null
     }
   }
 
@@ -27,6 +33,7 @@ export class Timeline {
     this.pauseTime = Date.now();
     if (this.requestID) {
       cancelAnimationFrame(this.requestID)
+      this.requestID = null
       this.state = 'pause';
     }
   }
@@ -45,6 +52,18 @@ export class Timeline {
     this.requestID = requestAnimationFrame(this.tick);
   }
 
+  reset() {
+    if (this.state === 'playing') 
+      this.pause();
+    this.startTime = Date.now();
+    this.pauseTime = null;
+    this.state = 'playing';
+    this.requestID = null;
+    this.animations = new Set();
+    this.addTimes = new Map();
+    this.tick();
+  }
+
   restart() {
     if (this.state === 'playing') 
       this.pause();
@@ -52,22 +71,22 @@ export class Timeline {
     this.pauseTime = null;
     this.state = 'playing';
     this.requestID = null;
-    this.animations = this.animations.map(animation => {
-      return {
-        ...animation,
-        finished: false
-      }
-    })
-    // this.tick();
+    for (let animation of this.finishedAnimations) {
+      this.animations.add(animation)
+    }
+    this.finishedAnimations = new Set();
+    this.tick();
   }
 
   add(animation, addTime) {
-    this.animations.push(animation);
-    animation.finished = false;
+    this.animations.add(animation);
+    if (this.state === 'playing' && this.requestID === null) {
+      this.requestID = requestAnimationFrame(this.tick)
+    }
     if (this.state === 'playing') {
-      animation.addTime = addTime !== void 0 ? addTime : Date.now() - this.startTime;
+      this.addTimes.set(animation, addTime !== void 0 ? addTime : Date.now() - this.startTime);
     } else {
-      animation.addTime = addTime !== void 0 ? addTime : 0;
+      this.addTimes.set(animation, addTime !== void 0 ? addTime : 0);
     }
   }
 }
