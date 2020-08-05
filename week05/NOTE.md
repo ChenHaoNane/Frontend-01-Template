@@ -3,7 +3,7 @@
 ### 执行上下文
 
 - lexical environment：词法环境，当获取变量或者this值时使用
-- variable environment：变量环境，当生命变量时使用
+- variable environment：变量环境，当声明变量时使用
 - code evaluation state：用于恢复代码执行位置
 - Function：执行的任务是函数时使用，表示正在被执行的函数
 - ScriptOrModule：执行的任务是脚本或者模块时使用，表示正在被执行的代码

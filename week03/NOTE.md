@@ -92,9 +92,12 @@ Object -> 基本类型
 ### 复合语句
 
 - BlockStatement
+- IfStatement
 - IterationStatement
 - LabelledStatement
 - SwitchStatement
+- WithStatement
+- TryStatement
 
 ### 声明
 
