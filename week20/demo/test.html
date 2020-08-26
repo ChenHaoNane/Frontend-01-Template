@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title></title>
+    <script>
+      (function (n, e, t, a, i) {
+        var o = "pageStartTime";
+        var r = "HuamiBrowserAnalytics";
+        n[o] = Date.now();
+        n[r] = { config: {}, queue: [] };
+        n[i] = {
+          init: function (e) {
+            n[r].config = e;
+          },
+          push: function (e) {
+            n[r].queue.push(e);
+          },
+        };
+        if ("PerformanceLongTaskTiming" in window) {
+          var c = (window.__tti = { e: [] });
+          c.o = new PerformanceObserver(function (e) {
+            c.e = c.e.concat(e.getEntries());
+          });
+          c.o.observe({ entryTypes: ["longtask"] });
+        }
+        var s = e.createElement(t);
+        s.onload = s.onreadystatechange = function () {
+          var e = s.readyState;
+          if (typeof e === "undefined" || e === "loaded" || e === "complete") {
+            try {
+              window[i] = window["Analytics"];
+              if (window[i]) window[i].ready();
+            } finally {
+              s.onload = s.onreadystatechange = null;
+            }
+          }
+          s.onreadystatechange = null;
+        };
+        s.async = true;
+        s.setAttribute("type", "text/javascript");
+        s.setAttribute("src", a);
+        document.head.appendChild(s);
+      })(
+        typeof window !== "undefined" ? window : this,
+        document,
+        "script",
+        "https://fe-cdn.huami.com/analytics-browser/1.2.7/analytics.min.js",
+        "HM_Analytics"
+      );
+    </script>
+    <style>
+      .html,
+      body {
+        width: 100%;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .article {
+        padding: 15px 15px 30px;
+      }
+
+      /* 重置样式 start */
+      .article p {
+        font-size: 17px;
+        color: #000;
+        opacity: 0.9;
+        line-height: 28px;
+        margin: 25px 0;
+      }
+
+      .article *[style*="background-color"] {
+        background-color: rgba(246, 246, 246, 1) !important;
+        border-radius: 4px;
+        color: rgba(0, 0, 0, 0.6) !important;
+      }
+
+      .article h1,
+      .article h2,
+      .article h3,
+      .article h4,
+      .article h5,
+      .article h6 {
+        color: rgba(0, 0, 0, 0.9);
+        font-weight: 600;
+      }
+
+      .article a {
+        color: #ff6000;
+        font-size: 17px;
+        line-height: 28px;
+        margin: 24px 0;
+        text-decoration: none;
+      }
+
+      .article h1 {
+        font-size: 22px;
+        line-height: 30px;
+        margin: 27px 0;
+      }
+
+      .article h2 {
+        font-size: 20px;
+        line-height: 28px;
+        margin: 27px 0;
+      }
+
+      .article h3 {
+        font-size: 18px;
+        line-height: 25px;
+        margin: 27px 0 25px;
+      }
+
+      .article h4 {
+        font-size: 17px;
+        line-height: 24px;
+        margin: 25px 0;
+      }
+
+      .article h5 {
+        font-size: 17px;
+        line-height: 24px;
+        margin: 25px 0;
+      }
+
+      .article h6 {
+        font-size: 17px;
+        line-height: 24px;
+        margin: 25px 0;
+      }
+
+      /* 重置样式 end */
+      .article .title {
+        line-height: 30px;
+        font-size: 22px;
+        color: #000;
+        font-weight: 600;
+        opacity: 0.9;
+        margin-bottom: 9px;
+        margin-top: 0;
+      }
+
+      .article .extra {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .article .extra .category-date {
+        display: flex;
+        align-items: center;
+      }
+
+      /* 处理0.5border问题 */
+      .article .extra .category-date .tag {
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        padding: 0 8px;
+        height: 18px;
+        text-align: center;
+        line-height: 18px;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.6);
+        margin-right: 10px;
+      }
+
+      .article .extra .category-date .tag .content {
+        display: inline-block;
+        position: relative;
+        z-index: 2;
+        transform: scale(0.83);
+      }
+
+      .article .extra .category-date .tag .border {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        position: absolute;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        top: -50%;
+        right: -50%;
+        bottom: -50%;
+        left: -50%;
+        border-radius: 20px;
+      }
+
+      .article .extra .category-date .text {
+        font-size: 12px;
+        color: #000;
+        opacity: 0.6;
+        line-height: 18px;
+        margin-right: 10px;
+      }
+
+      .article .extra .read-count {
+        font-size: 12px;
+        line-height: 18px;
+        color: #000;
+        opacity: 0.6;
+      }
+
+      /* 内容 */
+      .article .content {
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      /* 设置所有图片和视频的最大宽度100% */
+      .article .content img,
+      .article .content video {
+        display: block;
+        margin: 25px auto 10px;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .article .content img + * {
+        display: block;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.6) !important;
+        font-size: 16px;
+        line-height: 26px;
+      }
+
+      /* 点赞 */
+      .vote .vote-button {
+        position: relative;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        width: 96px;
+        height: 36px;
+      }
+
+      .vote .vote-button .border {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        position: absolute;
+        border: 1px solid #ff6000;
+        top: -50%;
+        right: -50%;
+        bottom: -50%;
+        left: -50%;
+        border-radius: 8px;
+      }
+
+      .vote .vote-button .icon {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        position: relative;
+        top: 8px;
+        background-size: cover;
+      }
+
+      .vote .vote-button.not-voted .icon {
+        background-image: url(https://img-cdn.huami.com/20200601/681d474b978dd2519ac604124a3ce97c1590974963138.png);
+      }
+
+      .vote .vote-button.voted .icon {
+        background-image: url(https://img-cdn.huami.com/20200601/75f0fa966d8246d1ba25faa636a407531590974912376.png);
+      }
+
+      .vote .vote-button .text {
+        margin-left: 4px;
+        font-size: 14px;
+        line-height: 36px;
+        color: #ff6000;
+      }
+
+      .vote .vote-count {
+        margin-top: 8px;
+        text-align: center;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.3);
+      }
+
+      /* 相关内容 */
+      .related-contents {
+        margin-top: 15px;
+        padding: 15px 15px 23px;
+      }
+
+      .related-contents.hidden {
+        display: none;
+      }
+
+      .related-contents .sub-title {
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.9);
+        line-height: 22px;
+        font-weight: 400;
+      }
+
+      .related-contents .divider {
+        margin: 0;
+        height: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        margin-top: 7px;
+      }
+
+      .related-contents .article-list {
+        padding: 0;
+        margin: 0;
+      }
+
+      .related-contents .article-list .list-item {
+        list-style: none;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      .related-contents .article-list .list-item .main {
+        flex: auto;
+        margin-right: 20px;
+        height: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .related-contents .article-list .list-item .main .title {
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.9);
+        line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+
+      .related-contents .article-list .list-item .main .extra {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      .related-contents .article-list .list-item .main .extra .tag {
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        width: 36px;
+        height: 18px;
+        text-align: center;
+        line-height: 18px;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.6);
+        margin-right: 2px;
+      }
+
+      .related-contents .article-list .list-item .main .extra .tag .content {
+        display: inline-block;
+        position: relative;
+        z-index: 2;
+        transform: scale(0.83);
+      }
+
+      .related-contents .article-list .list-item .main .extra .tag .border {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        position: absolute;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        top: -50%;
+        right: -50%;
+        bottom: -50%;
+        left: -50%;
+        border-radius: 20px;
+      }
+
+      .related-contents .article-list .list-item .main .extra .read-vote {
+        margin-left: 6px;
+        line-height: 18px;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      .related-contents .article-list .list-item .wrap {
+        flex: 0 0 100px;
+        position: relative;
+      }
+
+      .related-contents .article-list .list-item .wrap .img-bg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 8px;
+        width: 100px;
+        height: 70px;
+        background-color: #f4f4f4;
+        background-image: url(https://img-cdn.huami.com/20200601/543aa62cf328728195ea947cb97eaf941590974847259.png);
+        background-size: 40px 25px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+      }
+
+      .related-contents .article-list .list-item .wrap .cover {
+        display: inline-block;
+        width: 100px;
+        height: 70px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .related-contents .no-more {
+        margin-top: 22px;
+        line-height: 18px;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      /* 图文跳转 */
+      .img-jump.hidden {
+        display: none;
+      }
+
+      .img-jump-box {
+        position: relative;
+        display: inline-block;
+        margin: 25px auto 10px;
+        max-width: 100%;
+      }
+
+      .img-jump-box img {
+        display: block;
+        margin: 0 !important;
+      }
+
+      .img-jump-box .jump-info {
+        position: absolute;
+        bottom: 0;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        color: #fff;
+        text-align: justify;
+        padding: 0 35px 0 13px;
+        background-color: rgba(51, 51, 51, 0.4);
+        width: 100%;
+        box-sizing: border-box;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .img-jump-box .jump-info .jump-icon {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background: url("https://img-cdn.huami.com/20200623/7653297de32f34fdec0dd0653aebf3581592880745780.png")
+          no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 13px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="article">
+      <h1 class="title">关爱父母神器——“亲友”功能</h1>
+      <div class="extra">
+        <div class="category-date">
+          <div class="tag">
+            <div class="content">科普</div>
+            <div class="border"></div>
+          </div>
+          <span class="text"></span><span class="text">2020-07-23</span>
+        </div>
+        <span class="read-count">人阅读</span>
+      </div>
+      <div class="content">
+        <p>
+          <span style="font-size: 10.5pt;"
+            >出门在外，心里始终放不下的，唯有父母与孩子。</span
+          ><span style="font-size: 10.5pt;"
+            >爸妈每天睡的怎么样？孩子是不是又长大了一些？他们有没有适当的散散步，运动一下？</span
+          >
+        </p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            >工作很忙，对亲人的担忧一点不少。一年也没能回家几次，不能时常陪伴他们身旁；打起电话，一句句的“一切都好”让所有担忧的话不得已吞回肚子里。</span
+          ><img
+            id="img-jump"
+            class="img-jump"
+            width="264"
+            height="157"
+            data-jump-data='{"isJump":true,"thumbnail":"https://img-cdn.huami.com/20200723/a0a080f42e6f13b3a2df133f073095dd1595474264826.png","jumpText":"","target":"mine:friends","type":"app","mode":2,"assets":"","ids":[]}'
+            data-src="https://img-cdn.huami.com/20200622/b0cc6ed263c1e6157826d7650706496b1592818663290.png"
+          />
+        </p>
+
+        <p>
+          <span style="font-size: 10.5pt;"
+            >还不知道吧，小米运动专属“亲友”功能可是守护父母健康的好帮手。</span
+          ><span style="font-size: 10.5pt;"
+            >无论是体重，还是每日步数、睡眠时间，一切尽在掌握之中。</span
+          >
+        </p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            >刚刚打开手机才发现，小编的妈妈昨晚只睡了七个小时呀。</span
+          >
+        </p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            ><img
+              alt=""
+              width="591"
+              height="315"
+              data-src="https://img-cdn.huami.com/20200722/21595412358659.jpg"
+          /></span>
+        </p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            >仔细一看，原来是入睡时间太晚了。看来以后要督促妈妈早睡了。</span
+          >
+        </p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            ><img
+              alt=""
+              width="823"
+              height="1219"
+              data-src="https://img-cdn.huami.com/20200722/31595412372011.jpg"
+          /></span>
+        </p>
+        <p><span style="font-size: 10.5pt;">快来学习学习如何操作吧！</span></p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            ><span lang="EN-US">1</span>、打开小米运动<span lang="EN-US"
+              >APP</span
+            >，点开<span lang="EN-US">“</span><strong>我的</strong
+            ><span lang="EN-US">”</span>页面。</span
+          >
+        </p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            ><img
+              alt=""
+              width="413"
+              height="731"
+              data-src="https://img-cdn.huami.com/20200722/41595412433750.jpg"
+          /></span>
+        </p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            ><span lang="EN-US">2</span>、打开<span lang="EN-US">“</span
+            ><strong>亲友功能</strong
+            ><span lang="EN-US">”</span
+            >，添加你想关爱的人的二维码，添加关爱名单。</span
+          >
+        </p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            ><img
+              alt=""
+              width="527"
+              height="504"
+              data-src="https://img-cdn.huami.com/20200722/51595412459327.jpg" /><img
+              alt=""
+              width="438"
+              height="512"
+              data-src="https://img-cdn.huami.com/20200722/61595412469527.jpg"
+          /></span>
+        </p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            ><span lang="EN-US">3</span
+            >、添加成功后，点击页面右下方红色小爱心，对方就可以收到你的关爱。</span
+          >
+        </p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            ><img
+              alt=""
+              width="292"
+              height="616"
+              data-src="https://img-cdn.huami.com/20200722/71595412489289.jpg" /></span
+          ><span style="font-size: 10.5pt;"
+            >悄悄告诉你，点击上图右上方三点还可修改备注哦！</span
+          >
+        </p>
+        <p>
+          <span style="font-size: 10.5pt;"
+            >世界很大，幸福很小，一家人整整齐齐，健健康康，就是最大的幸福。守护父母，从“关爱”开始<span
+              lang="EN-US"
+              >~</span
+            ></span
+          >
+        </p>
+      </div>
+    </div>
+    <div class="vote">
+      <div class="vote-button not-voted" onclick="vote()">
+        <span class="icon"></span><span class="text">点赞</span>
+        <div class="border"></div>
+      </div>
+      <div class="vote-count"><span class="count"></span>人点赞</div>
+    </div>
+    <div class="related-contents hidden">
+      <div class="sub-title">相关内容</div>
+      <div class="divider"></div>
+      <ul class="article-list"></ul>
+      <div class="no-more">没有更多内容啦，看看别的吧</div>
+    </div>
+    <script></script>
+    <script
+      src="https://cdn.ravenjs.com/3.26.2/raven.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://fe-cdn.huami.com/api-config/1.0.1/main.js"></script>
+    <script>
+      /*判断当前环境*/ var ENV =
+        window.location.href.indexOf("testing") > -1 ? "testing" : "pro";
+      var configHost = new ApiConfig(ENV, 1).getHost();
+      var commonHost = configHost.common;
+    </script>
+    <script>
+      document.write(
+        '<script src="' +
+          commonHost +
+          "bee/keep-alive?driver=jsbridge&aid=30000009&jsApiList[]=getUserToken&jsApiList[]=navigateTo&v=" +
+          Math.random() +
+          '" /><\/script>'
+      );
+    </script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"
+    ></script>
+    <script>
+      /*解析url，返回查询参数对像*/ function parse_url(url) {
+        var pattern = /(\w+)=(\w+)/gi;
+        var parames = {};
+        url.replace(pattern, function (a, b, c) {
+          parames[b] = c;
+        });
+        return parames;
+      }
+      /*打点统计初始化*/ function initAnalytics() {
+        window.HM_Analytics.init({
+          debug: window.location.href.indexOf("testing") >= 0,
+          clients: {
+            huami: "cec867349512c31c668210aa9cf6c3a4",
+            baidu: "ddbe3b5cebb62d4f23b311d6c542f76b",
+          },
+          namespace: "FIND_CONTENT",
+          isSPA: false,
+          autoPushPV: false,
+          autoFMP: false,
+        });
+      }
+      /*判断一个元素是否在可视区域*/ function isElementInViewport(
+        el,
+        offset = 0
+      ) {
+        const box = el.getBoundingClientRect();
+        const top = box.top >= 0;
+        const left = box.left >= 0;
+        const bottom =
+          box.bottom <=
+          (window.innerHeight || document.documentElement.clientHeight) +
+            offset;
+        const right =
+          box.right <=
+          (window.innerWidth || document.documentElement.clientWidth) + offset;
+        return top && left && bottom && right;
+      }
+      /*防抖函数*/ function debounce(fn, wait) {
+        var timeout = null;
+        return function () {
+          if (timeout !== null) clearTimeout(timeout);
+          timeout = setTimeout(fn, wait);
+        };
+      }
+      /*安装sentry*/ function installSentry() {
+        window.Raven.config(
+          "https://0eeb90e9ca3142f7afbe6c0c104b94d4@sentry-cn.huami.com/84"
+        ).install();
+      }
+      /*设置懒加载图片，并对图片缩放*/ function lazyLoadImages() {
+        var observer = lozad("img", {
+          load: function (el) {
+            var src = el.dataset.src;
+            el.src = src;
+          },
+        });
+        observer.observe();
+      }
+    </script>
+    <script>
+      /*隐藏标签上的title*/ document.title = "\u200E";
+      var aid = "30000009";
+      var authToken = "";
+      var href = window.location.href;
+      /*获取文章id*/ var id = window.location.pathname.split("/").slice(-1)[0];
+      /*文章platform和category*/ var search = parse_url(href);
+      var platform = search.platform;
+      var category = search.category;
+      /*判断当前环境*/ var ENV =
+        href.indexOf("testing") > -1 ? "test" : "production";
+      /*设置请求地址*/ var host = commonHost;
+      var KAReady = false;
+      var imgJumpDom = null;
+      var jumpData = null;
+    </script>
+    <script>
+      lazyLoadImages();
+      installSentry();
+      initAnalytics();
+    </script>
+    <script>
+      /*跳转*/ function navigateTo(e) {
+        /*位置点击统计*/ try {
+          HM_Analytics.push([
+            "_trackEvent",
+            "DIS_NEWS_DET_C",
+            "",
+            "",
+            { opt_value: 1, id: e.dataset.id, pos: e.dataset.index },
+          ]);
+        } finally {
+          window.location.href = e.dataset.target;
+        }
+      }
+      /*获取cookie*/ function getCookie(cname) {
+        var name = cname + "=";
+        try {
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(";");
+          for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == " ") {
+              c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return "";
+        } catch (error) {
+          throw new Error(
+            "getCookie Error, document.cookie = " +
+              document.cookie +
+              ", Error Message: " +
+              JSON.stringify(error)
+          );
+        }
+      }
+      /*点赞*/ function vote() {
+        /*点赞操作*/ var voteButtonEl = document.querySelector(".vote-button");
+        if (voteButtonEl.classList.contains("voted")) {
+          return;
+        } else {
+          /*位置点击统计*/ try {
+            HM_Analytics.push([
+              "_trackEvent",
+              "DIS_NEWS_LIKE_C",
+              "",
+              "",
+              { opt_value: 1, id: id, pos: 1 },
+            ]);
+          } finally {
+            var voteXHR = new XMLHttpRequest();
+            voteXHR.open("POST", host + "cms/articles/vote/" + id);
+            voteXHR.setRequestHeader("Authorization", authToken);
+            voteXHR.send();
+            voteXHR.onreadystatechange = function () {
+              if (voteXHR.readyState === 4) {
+                var voteCountEl = document.querySelector(".vote-count .count");
+                var count = voteCountEl.innerHTML;
+                voteCountEl.innerHTML = parseInt(count) + 1;
+                /*移除not-voted，添加voted*/ voteButtonEl.classList.remove(
+                  "not-voted"
+                );
+                voteButtonEl.classList.add("voted");
+              }
+            };
+          }
+        }
+      }
+      /*图片加载完成，取消背景*/ function imgOnLoad(e) {
+        e.nextElementSibling.setAttribute("style", "display: none;");
+      }
+      /*图文跳转初始化*/ function imgJumpInit() {
+        var width = imgJumpDom.getAttribute("width");
+        var height = imgJumpDom.getAttribute("height");
+        var tempDom = document.createElement("div");
+        tempDom.style.textAlign = "center";
+        jumpData = JSON.parse(imgJumpDom.dataset.jumpData);
+        tempDom.innerHTML = `<div class="img-jump-box" onclick="toJump()"> ${
+          jumpData.jumpText
+            ? '<div class="jump-info">' +
+              jumpData.jumpText +
+              '<span class="jump-icon"></span>\</div>'
+            : ""
+        }<img data-src="${jumpData.thumbnail}" src="${jumpData.thumbnail}" ${
+          width ? 'width="' + width + '"' : ""
+        } ${height ? 'height="' + height + '"' : ""}/></div> `;
+        var imgJumpParent = imgJumpDom.parentNode;
+        imgJumpParent.insertBefore(tempDom, imgJumpDom);
+        imgJumpParent.removeChild(imgJumpDom);
+      }
+      /*跳转*/ function toJump() {
+        if (!KAReady) return;
+        var type = jumpData.type;
+        var value = jumpData.target;
+        console.log(value);
+        if (type === "webview") {
+          window.location.href = value;
+        } else if (type === "app") {
+          if (value.indexOf("http") === 0) {
+            window.location.href = value;
+          } else {
+            HM.navigateTo({ position: value, fallbackEvent: "keep" });
+          }
+        } else if (type === "rn") {
+          HM.navigateTo({ position: value, fallbackEvent: "keep" });
+        } else if (type === "xcx") {
+          HM.navigateTo({
+            position: "miniprogram:wechat",
+            fallbackEvent: "keep",
+            data: JSON.parse(value),
+          });
+        }
+      }
+    </script>
+    <script>
+      /*获取图文跳转dom*/ imgJumpDom = document.getElementById("img-jump");
+      if (imgJumpDom) {
+        imgJumpDom.style.display = "none";
+        imgJumpInit();
+      }
+      KA.ready(function (data) {
+        KAReady = true;
+        var uid = getCookie("uid");
+        authToken = getCookie(`auth${aid}${uid}`);
+        console.log(authToken);
+        /*请求点赞数和阅读数*/ var voteReadXHR = new XMLHttpRequest();
+        voteReadXHR.open("GET", host + "cms/articles/indicators?ids=" + id);
+        voteReadXHR.setRequestHeader("Authorization", authToken);
+        voteReadXHR.send();
+        voteReadXHR.onreadystatechange = function () {
+          if (voteReadXHR.readyState === 4 && voteReadXHR.status === 200) {
+            var readCountEl = document.querySelector(".read-count");
+            var voteCountEl = document.querySelector(".vote-count .count");
+            try {
+              readCountEl.innerHTML =
+                JSON.parse(voteReadXHR.responseText)[id].pv + "人阅读";
+              voteCountEl.innerHTML = JSON.parse(voteReadXHR.responseText)[
+                id
+              ].like;
+            } catch (error) {
+              var message =
+                "Error Message: " +
+                JSON.stringify(error) +
+                ", voteReadXHR.responseText: " +
+                voteReadXHR.responseText +
+                ", id: " +
+                id;
+              throw new Error(message);
+            }
+          }
+        };
+        /*发送请求-查询是否已点赞*/ var xhr = new XMLHttpRequest();
+        xhr.open("GET", host + "cms/articles/" + id, "async");
+        xhr.setRequestHeader("Authorization", authToken);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            if (JSON.parse(xhr.responseText).isVote) {
+              document
+                .querySelector(".vote-button")
+                .classList.remove("not-voted");
+              document.querySelector(".vote-button").classList.add("voted");
+            }
+          }
+        };
+        /*请求相关内容列表*/ var relatedArticlesXHR = new XMLHttpRequest();
+        relatedArticlesXHR.open(
+          "GET",
+          host +
+            "cms/articles?platform=" +
+            platform +
+            "&category=" +
+            category +
+            "&page=1&per_page=4"
+        );
+        relatedArticlesXHR.setRequestHeader("Authorization", authToken);
+        relatedArticlesXHR.send();
+        relatedArticlesXHR.onreadystatechange = function () {
+          if (
+            relatedArticlesXHR.readyState === 4 &&
+            relatedArticlesXHR.status === 200
+          ) {
+            var data = JSON.parse(relatedArticlesXHR.responseText).data;
+            /*过滤掉当前文章，然后取前3篇文章*/ var filterData = data.filter(
+              function (item) {
+                return item.id !== Number(id);
+              }
+            );
+            var firstThreeArticle = filterData.slice(0, 3);
+            /*循环项目内容*/ var wrapEl = document.querySelector(
+              ".article-list"
+            );
+            var tml = "";
+            firstThreeArticle.forEach((item, index) => {
+              if (item.thumbnail && item.thumbnail !== "") {
+                tml += `<li class="list-item" id=${item.id} data-id=${
+                  item.id
+                } data-index=${index + 1} data-target=${item.target}&platform=${
+                  item.platform
+                }&category=${
+                  item.category
+                } onclick="navigateTo(this)"><div class="main"><div class="title">${
+                  item.title
+                }</div><div class="extra"><div class="tag"><div class="content">${
+                  item.metas.show_tag ? item.metas.show_tag[0] : ""
+                }</div><div class="border"></div></div><span class="read-vote">${
+                  item.pv
+                }人阅读 · ${
+                  item.like
+                }人点赞</span></div></div><div class='wrap'><img class="cover" src=${
+                  item.thumbnail
+                } onload="imgOnLoad(this)" /><div class="img-bg"></div></div></li> `;
+              } else {
+                tml += `<li class="list-item" id=${item.id} data-id=${
+                  item.id
+                } data-index=${index + 1} data-target=${item.target}&platform=${
+                  item.platform
+                }&category=${
+                  item.category
+                } onclick="navigateTo(this)"><div class="main"><div class="title">${
+                  item.title
+                }</div><div class="extra"><div class="tag"><div class="content">${
+                  item.metas.show_tag ? item.metas.show_tag[0] : ""
+                }</div><div class="border"></div></div><span class="read-vote">${
+                  item.pv
+                }人阅读 · ${item.like}人点赞</span></div></div></li> `;
+              }
+            });
+            wrapEl.innerHTML = tml;
+            /*显示相关内容*/ if (
+              firstThreeArticle &&
+              firstThreeArticle.length
+            ) {
+              document
+                .querySelector(".related-contents")
+                .classList.remove("hidden");
+            }
+            /*注册监听函数*/ let el1 = null;
+            let el2 = null;
+            let el3 = null;
+            firstThreeArticle.forEach((item, index) => {
+              switch (index) {
+                case 0:
+                  el1 = document.getElementById(String(item.id));
+                case 1:
+                  el2 = document.getElementById(String(item.id));
+                case 2:
+                  el3 = document.getElementById(String(item.id));
+              }
+            });
+            if (el1) {
+              const isIn = isElementInViewport(el1, 0);
+              const elID = el1.dataset.id;
+              const track = el1.dataset.track;
+              if (isIn && track != "1") {
+                HM_Analytics.push([
+                  "_trackEvent",
+                  "DIS_NEWS_DET_V",
+                  "",
+                  "",
+                  { opt_value: 1, id: elID, pos: 1 },
+                ]);
+                el1.setAttribute("data-track", "1");
+              }
+            }
+            if (el2) {
+              const isIn = isElementInViewport(el2, 0);
+              const elID = el2.dataset.id;
+              const track = el2.dataset.track;
+              if (isIn && track != "1") {
+                HM_Analytics.push([
+                  "_trackEvent",
+                  "DIS_NEWS_DET_V",
+                  "",
+                  "",
+                  { opt_value: 1, id: elID, pos: 2 },
+                ]);
+                el2.setAttribute("data-track", "1");
+              }
+            }
+            if (el3) {
+              const isIn = isElementInViewport(el3, 0);
+              const elID = el3.dataset.id;
+              const track = el3.dataset.track;
+              if (isIn && track != "1") {
+                HM_Analytics.push([
+                  "_trackEvent",
+                  "DIS_NEWS_DET_V",
+                  "",
+                  "",
+                  { opt_value: 1, id: elID, pos: 3 },
+                ]);
+                el3.setAttribute("data-track", "1");
+              }
+            }
+            window.onscroll = debounce(function () {
+              if (el1) {
+                const isIn = isElementInViewport(el1, 0);
+                const elID = el1.dataset.id;
+                const track = el1.dataset.track;
+                if (isIn && track != "1") {
+                  HM_Analytics.push([
+                    "_trackEvent",
+                    "DIS_NEWS_DET_V",
+                    "",
+                    "",
+                    { opt_value: 1, id: elID, pos: 1 },
+                  ]);
+                  el1.setAttribute("data-track", "1");
+                }
+              }
+              if (el2) {
+                const isIn = isElementInViewport(el2, 0);
+                const elID = el2.dataset.id;
+                const track = el2.dataset.track;
+                if (isIn && track != "1") {
+                  HM_Analytics.push([
+                    "_trackEvent",
+                    "DIS_NEWS_DET_V",
+                    "",
+                    "",
+                    { opt_value: 1, id: elID, pos: 2 },
+                  ]);
+                  el2.setAttribute("data-track", "1");
+                }
+              }
+              if (el3) {
+                const isIn = isElementInViewport(el3, 0);
+                const elID = el3.dataset.id;
+                const track = el3.dataset.track;
+                if (isIn && track != "1") {
+                  HM_Analytics.push([
+                    "_trackEvent",
+                    "DIS_NEWS_DET_V",
+                    "",
+                    "",
+                    { opt_value: 1, id: elID, pos: 3 },
+                  ]);
+                  el3.setAttribute("data-track", "1");
+                }
+              }
+            }, 200);
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
